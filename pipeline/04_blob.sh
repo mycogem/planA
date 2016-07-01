@@ -57,12 +57,16 @@ BLOBDB=$BLOBDIR/${SAMPLE}.BlobDB.json
 if [ ! -f $BLOBDB  ]; then
     /usr/local/pkg/blobtools/blobtools \
 	create -i $BLOBDIR/${RND} \
-	-o $BLOBDIR/${SAMPLE} -t $BLASTOUT \
+	-o ${BLOBDIR}/${SAMPLE} -t $BLASTOUT \
 	--nodes ${TAXDB}/nodes.dmp --names ${TAXDB}/names.dmp \
 	-b $BAMOUT
+    if [ -f ${SAMPLE}.BlobDB.json ]; then
+	# still creating in CWD even though we gave a full path
+	mv ${SAMPLE}.BlobDB.json $BLOBDB
+    fi
 fi
 
 
 /usr/local/pkg/blobtools/blobtools blobplot -i $BLOBDB -o $BLOBDIR/${SAMPLE}
-/usr/local/pkg/blobtools/blobtools blobplot -i $BLOBDB -o $BLOBDIR/${SAMPLE} -f pdf
+/usr/local/pkg/blobtools/blobtools blobplot -i $BLOBDB -o $BLOBDIR/${SAMPLE} --format pdf
 
