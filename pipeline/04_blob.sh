@@ -54,7 +54,7 @@ blastn \
 fi
 
 BLOBDB=$BLOBDIR/${SAMPLE}.BlobDB.json
-if [ ! -f   ]; then
+if [ ! -f $BLOBDB  ]; then
     /usr/local/pkg/blobtools/blobtools \
 	create -i $BLOBDIR/${RND} \
 	-o $BLOBDIR/${SAMPLE} -t $BLASTOUT \
