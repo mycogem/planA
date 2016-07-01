@@ -43,7 +43,7 @@ if [ ! -f $BLASTOUT ]; then
 
 blastn \
 -task megablast \
--query $RND \
+-query $BLOBDIR/${RND} \
 -db  $NTDB  \
 -outfmt '6 qseqid staxids bitscore std sscinames sskingdoms stitle' \
 -culling_limit 5 \
